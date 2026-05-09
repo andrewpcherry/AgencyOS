@@ -1,5 +1,7 @@
 # n8n workflow exports — contain embedded credentials
 *.json
+# But allow sanitized API dumps in the audit folder
+!_handoff/audit/raw/*.json
 # Local env / credential files
 .env
 .env_*
