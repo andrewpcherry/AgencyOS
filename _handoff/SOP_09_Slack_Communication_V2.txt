@@ -1,0 +1,246 @@
+
+SOP 09
+Slack Communication
+How to talk to the team, the agents, and SmartSuite — without breaking the automation.
+
+TL;DR — In 30 Seconds
+Channel Map
+RequityAI Slack has 4 types of channels. Each has one job. Post in the wrong place and your message gets lost — or worse, goes to the client.
+Current Client Channels
+When a new client is onboarded, both channels are created automatically. You'll be added to both.
+
+Communication Rules
+Respond to task notifications within 1 hour during working hours.
+Use threads for replies. Never reply in the main channel body.
+Use emoji reactions to acknowledge:
+✅ = Done / Acknowledged
+👀 = Seen, working on it
+❓ = Need clarification
+Do not DM Andrew unless it's urgent and private. Use the appropriate channel.
+Do not use @channel or @here. Andrew only.
+Keep messages short and actionable. State the issue, what you tried, what you need.
+No personal conversations in work channels.
+Escalation — If Something's Broken or Urgent
+Post in #team-<client> (or #team-operations if cross-client) with the client name and issue.
+No response within 30 minutes AND blocking a live campaign? DM Andrew directly.
+System alert that affects a live campaign? DM Andrew immediately.
+What NOT to Do
+Don't create new channels without Andrew's approval.
+Don't invite external people to any channel without Andrew's approval.
+Don't discuss client information in #all-requityai.
+Don't post free-form task updates — always use the structured format (Section 7).
+Don't use Slack for file storage. All files go to Google Drive.
+Don't ever post structured /update messages in #client-<client> channels.
+Quick Reference Card
+
+Structured Message Format — REQUIRED
+The Three Agents
+Three automation agents speak to you in Slack. Recognising their messages helps you know what action to take.
+When to Use a Structured Message
+Use a /update message any time something should be recorded in SmartSuite. That includes:
+Completing a task
+Flagging a task as blocked
+Reporting a campaign build is ready for QA
+Confirming an onboarding step is done
+Flagging a client issue
+Reporting video / creative status
+Logging a conversation outcome
+Responding to a Campaign Intelligence Agent directive
+Acknowledging an Operations Agent reminder
+If your message is a question or discussion, you do NOT need the structured format. Only use it when the result should update a SmartSuite record.
+
+The Format
+Every structured message starts with /update [APP] on the first line, then field: value pairs on each subsequent line.
+Rules:
+/update tag and app name MUST be on the first line.
+Client name MUST match SmartSuite exactly. "Quick Home Buyers" — not "QHB" or "quick home".
+Each field on its own line. Don't combine.
+Status values MUST use exact SmartSuite dropdown labels (listed below).
+Notes is optional but encouraged.
+Don't add extra fields. Only use the ones listed for each app.
+App-Specific Formats
+Tasks
+Valid Status: To Do, In Progress, Blocked, Done.
+Valid Task Types: Build Video Views Campaign, Build Retarget Campaign, Build Lead Ad Campaign, Create Retargeting Audiences, Upload Ad Creatives, Process Raw Video, QA Campaign, Launch Campaign, Set Up Ad Account Access, Configure Lead Notifications, Send Video Brief, Organic Page Post, CSV Import Build, Optimization Review, General Task.
+Campaigns
+
+Onboarding
+Valid Steps:
+Account Access: Business Portfolio Access, Ad Account Visible, Facebook Page Confirmed, Instagram Connected, Meta Ads App Installed.
+Lead Setup: Leads Access Confirmed, Lead Notifications Set, Lead Centre to CRM, Lead Destination Confirmed, FB Lead Centre Connected.
+Videos: Video Brief Sent, Videos Received, Approved Videos Exist.
+Campaign Launch: Campaign Built, QA Passed, Campaign Launched, Launch Notification Sent.
+Master: Onboarding Complete.
+Pipeline
+Valid Stage values (11 total): Lead, Contacted, Discovery Call, NDM (No Decision Made), Proposal Sent, Negotiation, Verbal Commit, Onboarding, Active Client, Churned, Lost.
+Optimization
+Finance
+Clients
+
+Agent-to-VA Message Format
+When the agents post structured messages to you, they look like this:
+Your action: Go to Ads Manager → Audiences → Create Custom Audience → Video → use the exact specs above. When done, post a /update Tasks message.
+Your action: Read and acknowledge with 👀. If anything is yours, take action.
+Common Mistakes — Don't Do This
+Free-form: "Hey I finished the campaign for QHB, it's the probate one in Dallas, 3 ad sets" — won't parse, no record updated.
+Abbreviated client name: "Client: QHB" — won't match SmartSuite. Use the exact full name.
+Made-up status value: "Status: Finished" — must be an exact SmartSuite dropdown label.
+Multiple updates in one message — post each as a separate /update.
+Ignoring agent specs — if Campaign Intelligence says 25% / 50% with 30-day lookback, don't use 75% / 14-day.
+Posting structured /update messages in #client-<client> — never. Those are client-facing.
+What Happens After You Post
+SmartSuite Sync Agent reads your message within 60 seconds.
+It parses the fields, finds the matching record, updates it.
+Bot reacts ✅ if processed successfully.
+Bot reacts ⚠️ if it can't parse — check your format and repost.
+If you see ⚠️, review your message against this SOP and post a corrected version.
+Cheat Sheet
+
+RequityAI · Agency OS
+WHO THIS IS FOR
+Virtual Assistant — every Slack message you send. | LAST UPDATED
+May 2, 2026
+ | The big idea
+Slack is wired into SmartSuite. When you post a structured /update message, an agent reads it and updates the right SmartSuite record automatically. No copy-paste, no manual data entry.
+Section 7 (Structured Message Format) is the most important part of this SOP. Get the format right and the system does the work for you. Get it wrong and Andrew has to fix it manually.
+ | Channel renamed
+#team-tasks was renamed to #team-operations on April 22, 2026. Use #team-operations everywhere.
+Channel | What it's for | Who posts
+#all-requityai | Company-wide announcements, updates, recognition. | Andrew only. VAs read.
+#team-operations | Cross-client agency rollup. Daily ops briefing (8am ET), sales brief (8:05am ET M–F), system health summaries, stale-record alerts. Cross-client signal lives here. | Agents + Andrew.
+#team-<client> | Internal team channel for ONE client. Per-client task notifications, build notes, video status, QA approvals, day-to-day VA work. ONE channel per client (private). | You + agents + Andrew.
+#client-<client> | Client-facing channel (if the client is in Slack). Professional tone only. Campaign launch notifications, deliverables. | Andrew (mostly). VA only with approval.
+ | Two channels per client — never mix them up
+#team-<client> = INTERNAL. Anything goes (within reason). Build notes, blockers, questions.
+#client-<client> = EXTERNAL. Client may be reading. Professional only. Never structured /update messages, never internal opinions, never pricing.
+Client | Internal | Client-facing
+Ritsel Notes | #team-ritsel-notes | #client-ritsel-notes
+Quick Home Buyers | #team-quick-home-buyers | #client-quick-home-buyers
+RealVantage | #team-real-vantage | #client-real-vantage
+First Integrity Home Buyers | #team-first-integrity-home-buyers | #client-first-integrity-home-buyers
+ | Quiet hours
+Automated client-facing notifications fire 8am–6pm ET only. If you see a system message outside those hours, it's probably a system issue — flag to Andrew.
+What you're doing | Where it goes
+Reading agency-wide briefings, system status | #team-operations
+Working on a specific client (build, QA, video, blocker) | #team-<client>
+Asking a question about a build | #team-<client>
+Logging a /update Tasks message | #team-<client>
+Logging a /update Pipeline / Finance message | #team-operations
+Communicating WITH the client | #client-<client> (Andrew approves first)
+Reporting an urgent system failure blocking work | DM Andrew
+ | This is the most important section in this SOP
+When you post a /update message, the SmartSuite Sync Agent reads it within 60 seconds and updates the matching record in SmartSuite. ✅ reaction = processed. ⚠️ reaction = parse error, fix and repost.
+Get the format right and Andrew never has to touch SmartSuite. Get it wrong and Andrew has to fix it manually — which is exactly the bottleneck this whole system removes.
+Agent | What it does | Your job
+Campaign Intelligence Agent | Monitors campaign performance. Decides when retargeting audiences should be built. Flags underperforming ads. Posts to #team-<client> and #team-operations. | Execute its specs exactly as given (audience thresholds, lookback windows, page IDs). Don't modify them. Post a /update Tasks back when done.
+Operations Agent (Slack Ops Supervisor) | Runs at 8am and 8pm ET (M–F). Checks system health, flags stale tasks, posts daily briefings to #team-operations. | Read the briefing. If it flags something assigned to you, act and post a /update.
+SmartSuite Sync Agent | Parses your /update messages and writes them to SmartSuite. Reacts ✅ (processed) or ⚠️ (parse error). | Post correctly formatted messages. If you see ⚠️, fix and repost.
+ | Heads up
+The Campaign Intelligence Agent is currently dormant — it activates the moment a real campaign goes live. Operations Agent and SmartSuite Sync Agent are live and active right now.
+ | Skeleton
+/update [APP]
+Client: [exact client name from SmartSuite]
+Action: [what happened]
+Status: [new status value]
+Notes: [any additional context]
+ | Format
+/update Tasks
+Client: [client name]
+Task: [task name or task type]
+Status: [To Do | In Progress | Blocked | Done]
+Notes: [what you did or why it's blocked]
+ | Example — task completed
+/update Tasks
+Client: RealVantage
+Task: Build Video Views Campaign
+Status: Done
+Notes: 3 ad sets live, 5 ads per set, all videos from batch 2
+ | Example — task blocked
+/update Tasks
+Client: First Integrity Home Buyers
+Task: Create Retargeting Audiences
+Status: Blocked
+Notes: Ad account access not yet confirmed — waiting on client
+ | Format
+/update Campaigns
+Client: [client name]
+Campaign: [campaign name]
+Action: [Build Complete | QA Ready | Launched | Paused | Issue]
+Notes: [details]
+ | Example — ready for QA
+/update Campaigns
+Client: Quick Home Buyers
+Campaign: Probate Video Views — Dallas
+Action: QA Ready
+Notes: 3 ad sets, targeting Dallas DMA, daily budget $20/set, all creatives approved
+ | Format
+/update Onboarding
+Client: [client name]
+Step: [exact step name]
+Status: [Complete | In Progress | Not Started]
+Notes: [details]
+ | Example
+/update Onboarding
+Client: Quick Home Buyers
+Step: Ad Account Visible
+Status: Complete
+Notes: Ad account ID 1234567890 confirmed visible in Business Manager
+ | Format
+/update Pipeline
+Client: [client name]
+Deal: [deal/lead name]
+Stage: [see valid values below]
+Notes: [details]
+ | Example
+/update Pipeline
+Client: New Lead — Marcus Johnson
+Deal: Marcus Johnson
+Stage: Discovery Call
+Notes: Call scheduled for Monday 2pm ET via Calendly
+ | Format
+/update Optimization
+Client: [client name]
+Campaign: [campaign name]
+Action: [Review Complete | Budget Change | Creative Swap | Audience Update | Paused | Restarted]
+Notes: [what changed and why]
+ | Example
+/update Optimization
+Client: First Integrity Home Buyers
+Campaign: Inherited Property Video Views — Houston
+Action: Budget Change
+Notes: Increased daily budget from $20 to $35 — CPV at $0.02, strong engagement
+ | Format
+/update Finance
+Client: [client name]
+Action: [Payment Received | Invoice Sent | Payment Overdue | Refund Issued]
+Amount: [dollar amount]
+Notes: [details]
+ | Format
+/update Clients
+Client: [client name]
+Action: [Info Update | Issue | Escalation | Note]
+Field: [which field changed, if applicable]
+Value: [new value, if applicable]
+Notes: [details]
+ | Campaign Intelligence Agent — task assignment
+🤖 /task Create Retargeting Audiences
+Client: Quick Home Buyers
+Page: Quick Home Buyers FB Page (ID: 123456789)
+Audiences: 25% Viewers, 50% Viewers
+Lookback: 30 days
+Threshold: Minimum 1,000 video views before creating
+Deadline: 48 hours
+Notes: Video Views campaign has 2,400 views after 5 days. Ready for first retarget layer.
+ | Operations Agent — daily briefing
+📊 /briefing Daily Ops — May 2, 2026
+Active Clients: 4
+Tasks Due Today: 3
+Overdue Tasks: 1
+Onboarding Stuck: First Integrity Home Buyers — Step: Lead Centre to CRM (In Progress for 5 days)
+System Health: All workflows green
+ | The 5 things you need to remember
+1. Use #team-operations for cross-client. Use #team-<client> for one-client work. Never post /update in #client-<client>.
+2. Every status update goes through a /update message — never free-form.
+3. Client names = exact match to SmartSuite. Status values = exact dropdown label.
+4. ✅ from the bot = processed. ⚠️ = fix and repost.
+5. When in doubt, ask in #team-<client> as a question (no /update). Threads, not main channel.

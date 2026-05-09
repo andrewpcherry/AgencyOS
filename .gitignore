@@ -1,0 +1,10 @@
+# n8n workflow exports — contain embedded credentials
+*.json
+# Local env / credential files
+.env
+.env_*
+# Local backups / temp
+*.tmp
+*~
+.~*
+.DS_Store

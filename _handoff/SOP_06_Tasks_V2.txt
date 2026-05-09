@@ -1,0 +1,125 @@
+
+SOP 06
+Tasks
+Your single work queue. Open My Queue. Work top to bottom. Repeat.
+
+TL;DR — In 30 Seconds
+Your Daily Workflow
+Open SmartSuite → Tasks app → My Queue view.
+Queue is sorted by Priority (Urgent → High → Normal → Low), then Due Date.
+Start at the top. Open the first task.
+Read: task name, linked client, notes.
+Do the work.
+Update Status = Done when complete.
+Move to the next task.
+That's it. Top to bottom. Don't skip tasks without a reason.
+
+The 15 Task Types
+These are the categories of work you'll see in your queue. Each tells you what kind of work is needed.
+
+How to Work a Task
+Open My Queue.
+Click the top task to open it.
+Read everything:
+Task — what you're doing.
+Client — click through to see their details.
+Campaign — if applicable, which campaign this relates to.
+Type — confirms the kind of work.
+Priority — Urgent means now.
+Due Date — when it's due.
+Notes — specific instructions or context. Always read.
+Do the work (Ads Manager, Campaigns app, wherever applies).
+When done: change Status → Done.
+If you can't complete it: Status → Blocked + fill in Blocker Notes.
+Move to the next task in the queue.
+Priority Levels
+Task Status
+
+If You're Blocked
+A task is Blocked when you cannot complete it due to something outside your control.
+Change Status → Blocked.
+Fill in Blocker Notes — be specific so Andrew can unblock.
+Post a /update Tasks message in #team-<client> with Status: Blocked. Don't just quietly mark it blocked and move on.
+Common blockers:
+Client hasn't given access yet.
+Client hasn't sent videos yet.
+A field in the Campaign record is missing (e.g., no Asset Link).
+Ad account has a policy issue.
+Once the blocker is resolved, n8n or Andrew will unblock the task and it returns to your queue.
+Key Fields Explained
+Views
+What NOT to Do
+Don't create tasks manually. n8n creates tasks. If you think a task is missing, tell Andrew.
+Don't mark a task Done if you haven't actually completed the work. Be honest.
+Don't ignore blocked tasks. Flag them in Slack and keep checking back.
+Don't work on tasks assigned to someone else without being asked.
+Don't skip Urgent tasks to work on easier Normal tasks. Work priority order.
+Don't delete tasks. Even if a task seems wrong, mark it Done and flag to Andrew.
+Troubleshooting — If Something Looks Wrong
+Cheat Sheet
+
+RequityAI · Agency OS
+WHO THIS IS FOR
+Virtual Assistant — this is your home screen. | LAST UPDATED
+May 2, 2026
+ | The big idea
+Tasks is the VA's entire workload. n8n creates every task automatically based on what's happening in the system. You don't need to wonder what to work on — open My Queue and work top to bottom.
+If it's not in Tasks, it's not a priority. Work the queue, don't invent work.
+ | Your daily loop (5 steps)
+1. Open Tasks → My Queue.
+2. Open the top task.
+3. Do the work.
+4. Set Status = Done.
+5. Move to the next task.
+Task type | What it means
+Set Up Ad Account Access | Get access to the client's Meta Business Portfolio. Confirm ad account is visible. Send the access guide if the client hasn't granted access yet.
+Set Up Lead Forms | Set up Facebook Lead Centre and connect it to the client's CRM/destination. Confirm leads flow correctly.
+Request Videos | Send the client the video recording brief and follow up until videos are received. Brief is niche-specific (auto-selected).
+Upload Creative | Move client raw videos from Raw Video → Ad Creative folder in Google Drive once edited and ready.
+Write Script | Edit / finalise an AI-generated script. Claude writes the draft; VA reviews and edits for the client's voice.
+Admin | General admin task. Always check Notes for context.
+Build Campaign (CSV Import) | Build campaigns using CSV import — primary method for duplicating campaigns at scale. Follow SOP 05.
+Build Campaign (Manual) | Build a single campaign manually in Ads Manager + SmartSuite. Follow SOP 05.
+QA Campaign | Run through the 9-point QA checklist before publishing. SOP 05.
+Launch Campaign | Publish the approved campaign in Ads Manager. Update SmartSuite Status = Live. Set Launch Date.
+Campaign Review | Review a campaign flagged for performance check. See SOP 07.
+Cut / Pause Campaign | Pause or kill an underperforming campaign as flagged by the Intelligence Agent. Update Status to Paused or Cut.
+Create Retargeting Audiences | Create custom audiences in Ads Manager. Campaign Intelligence Agent posts the exact specs in Notes — follow them exactly.
+Update SmartSuite Records | Update records in SmartSuite as instructed. Check Notes for which app / record / fields.
+Escalation Follow-Up | A blocker or issue has been escalated. Read Notes carefully and follow up.
+Priority | What it means | Response time
+Urgent | Do this before anything else. Time-sensitive or blocking the whole client. | Within 1–2 hours
+High | Important. Do today. | Same day
+Normal | Standard work. Do within 24–48 hours. | 1–2 days
+Low | Nice-to-do. Work it when the queue is clear. | 3–5 days
+Status | What it means
+To Do | Task is in your queue, ready to work.
+In Progress | You've started this task.
+Blocked | You can't complete this due to an external blocker.
+Done | Task is complete.
+ | Don't leave In Progress
+Don't leave tasks as In Progress for more than 24 hours without an update. If you're still working on something, add a note + message Andrew on Slack.
+Field | What it's for
+Task | The name of the task. What to do.
+Client | Which client this task is for. Click through to see details.
+Campaign | Which campaign record this relates to (if applicable).
+Type | The category of task. See the 15 types above.
+Status | To Do / In Progress / Blocked / Done.
+Priority | Urgent / High / Normal / Low. Work in this order.
+Assigned To | Who owns this task. Only work tasks assigned to you.
+Due Date | The deadline. Never ignore.
+Blocker Notes | Only fill if Status = Blocked. Be specific.
+Notes | Context, instructions, links. Always read.
+View | When to use it
+My Queue | YOUR HOME SCREEN. Tasks assigned to you, sorted by priority then due date.
+Blocked | All tasks currently blocked. Check daily — you may be waiting on something that's been resolved.
+Done This Week | All tasks completed this week. Reference and reporting.
+Problem | What to do
+My Queue is empty but I know there's work to do | Check the Onboarding app — there may be steps awaiting completion. Tell Andrew.
+A task is assigned to me but I don't know what it means | Read Notes and the linked Campaign / Client record. Still unclear? Ask Andrew.
+A task was created for the wrong client | Flag to Andrew. Don't move it yourself.
+I completed work but n8n didn't create the next task | Tell Andrew — automation may have failed.
+I see tasks from other clients in My Queue | Check the Assigned To filter on the view. Should only show your tasks.
+ | The 4-step rule
+1. Top of the queue. 2. Read everything. 3. Do the work. 4. Mark Done.
+Repeat. The queue is your work plan — don't fight it, don't skip it, don't invent extra work.
