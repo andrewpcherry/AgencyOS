@@ -1,0 +1,84 @@
+
+SOP 03
+Clients
+The master directory of every client — who they are, their account details, and current status.
+
+TL;DR — In 30 Seconds
+Client Status — What Each Means
+How a Client Record Gets Created
+Andrew then fills in the account-specific fields (Meta IDs, Facebook page URL, etc.) as the client completes their setup. The VA reads these fields when they need to build campaigns or request access.
+
+How VAs Use This App (Read-Only)
+VAs reference client records to find account IDs and links. The workflow:
+Open Clients app → Dashboard view.
+Find the client (search by business name or scroll).
+Open the record. Read-only — find what you need:
+Ad Account ID → for building campaigns in Ads Manager.
+Facebook Page URL → to confirm the correct page.
+Business Portfolio ID → for access requests.
+Drive Folder URL → to find scripts and creative assets.
+How Andrew Updates a Client Record
+Open the client record.
+Update the relevant field as the client completes their setup (e.g., Ad Account ID).
+If their phase changes (Onboarding → Active), update Status.
+Add important context to Notes.
+Key Fields Explained
+Views
+
+What NOT to Do
+Don't create client records manually. Win the deal in Pipeline → M5 creates the record.
+Don't delete client records. Even churned clients stay as historical data.
+Don't edit Slack Channel ID unless Andrew has given you the correct ID.
+VAs: don't change the Status field. Only Andrew manages status.
+Don't store video scripts or creative assets in this app. Those go in Google Drive — link via Drive Folder URL.
+Troubleshooting — If Something Looks Wrong
+
+RequityAI · Agency OS
+WHO THIS IS FOR
+Andrew (manages). VA (read-only reference for account IDs and links). | LAST UPDATED
+May 2, 2026
+ | The big idea
+Clients is the source of truth for who a client is — contact details, Meta account IDs, status, links to everywhere they live in the system.
+You don't track onboarding here (Onboarding app). You don't build campaigns here (Campaigns app). You don't manage tasks here (Tasks app). This is just the directory.
+ | Records are auto-created
+When a deal hits Won in Pipeline, the M5 Deal Won workflow (live since April 24, 2026) creates the Client record + Onboarding record + Drive folder + Slack channels automatically. Don't create them manually.
+Status | What it means
+Onboarding | Client is new. Onboarding steps in progress. Campaigns not yet live.
+Active | Campaigns are live. Client is in the monthly retainer phase.
+Paused | Campaigns paused (client travelling, budget pause).
+Churned | Client has left. Keep the record — don't delete.
+ | The Won flow (M5 — auto)
+1. Andrew sets Pipeline deal_stage = Won.
+2. M5 webhook fires within seconds.
+3. Client record created here with basic info pulled from the deal.
+4. Onboarding record created in Onboarding app, linked to this Client.
+5. Drive folder created under RequityAI / [Client Name].
+6. Slack channels (#team-[client] private, #client-[client] public) created.
+7. Niche-aware video brief delivered based on Client.Niche field.
+8. Confirmation posted in #team-operations.
+ | VAs: do not edit fields here
+Unless Andrew specifically tells you to. Particularly: never change Status, Slack Channel ID, or any of the account ID fields. If something looks wrong, flag it.
+Field | What it's for
+Business Name | Primary identifier. Use their actual business name.
+Status | Onboarding / Active / Paused / Churned. Always keep current.
+Niche | REI (real estate investor wholesaler) / Notes (notes business) / Other. Drives niche-aware video brief delivery (M5). Ritsel Notes is Notes, not REI.
+Market / Region | Geographic target market (e.g., "Phoenix, AZ", "Dallas-Fort Worth").
+Ad Account ID | Facebook Ad Account ID. Find in Meta Business Manager. Numbers only.
+Business Portfolio ID | Meta Business Portfolio ID. Needed for VA to request access.
+Facebook Page URL | Full URL to their Facebook business page.
+Drive Folder URL | Link to their Google Drive folder with scripts and creative assets.
+Slack Channel ID | Used by n8n to route notifications to the right Slack channel. Andrew sets this.
+Assigned VA | Which VA handles this client's campaigns.
+Link to Onboarding | Connects to the Onboarding app record. Auto-created by M5.
+Link to Campaigns | Connects to all Campaign records for this client.
+Live Campaigns | Auto-counted from linked campaigns. Shows how many are running.
+Open Tasks | Auto-counted from linked tasks. Shows pending VA work.
+View | When to use it
+Dashboard | Main view. All clients with status, live campaigns, open tasks at a glance.
+Client Onboarding Form | The form new clients fill out. Don't edit this view.
+Problem | What to do
+Client record wasn't created after a deal was Won | Check #team-operations for an error. M5 may have failed — Andrew will reconcile.
+Ad Account ID is blank | Client hasn't shared it yet. Check Onboarding app for the step status.
+Client shows wrong status | Flag to Andrew — only Andrew changes Status.
+Drive Folder URL is empty | Drive folder hasn't been created yet (BegEckXSgXmVffX2 runs daily 8am ET). Check with Andrew if it's been more than a day.
+Niche is wrong | Ritsel = Notes, not REI. Wrong niche = wrong video brief delivered. Tell Andrew to fix.

@@ -1,0 +1,268 @@
+
+RequityAI
+Operator Guide
+
+How to run client delivery inside AgencyOS
+
+
+
+PREPARED FOR NEW HIRES
+Facebook Advertising Operations · Real Estate
+
+Welcome to RequityAI
+This guide explains how your role fits into AgencyOS — the operating system we use to run client delivery for our Facebook advertising agency.
+AgencyOS is a connected stack: SmartSuite, Slack, Google Drive, Meta Business Manager, Meta Ads Manager, automation workflows, and managed intelligence agents. These tools work together so client onboarding, campaign setup, task assignment, QA, launch, and optimization all move in sync — without anything falling through the cracks.
+Your role is to be the careful human operator inside this system. The system creates tasks, sends alerts, keeps records updated, and recommends next actions. You execute the work that still needs human eyes and human hands — and you do it with precision.
+
+
+Contents
+
+1. What RequityAI does
+RequityAI is a Facebook advertising agency serving real estate investors and off-market property businesses. We help clients generate qualified seller leads using a structured Facebook and Instagram advertising system.
+The campaign model has three stages. Understanding the stages helps you understand why specific operational tasks matter at specific moments.
+
+
+The whole system moves a viewer from attention, to trust, to lead capture. AgencyOS monitors this flow and creates work for you when each stage needs a human action.
+
+2. How AgencyOS keeps everything in sync
+AgencyOS is the operational layer behind the agency. Instead of relying on memory, manual chasing, or scattered messages, it creates a clear, automatic sequence of work.
+The end-to-end flow
+A prospect books a call → the sales pipeline record is created or updated automatically.
+Andrew runs the sales call.
+When a deal is marked Won → the client record, onboarding record, Slack channels, and Drive folders are all created automatically.
+The client moves through onboarding, with each step tracked in SmartSuite.
+You complete the operational setup tasks the system assigns to you in Slack and SmartSuite.
+When all prerequisites are met → the system creates the campaign build task.
+You build the campaign in Meta Ads Manager, complete QA, and launch on approval.
+Once live, campaign metrics are pulled in. The intelligence agent reviews performance and recommends a next action.
+The system creates an optimization task → you execute, or escalate to Andrew if it requires judgment.
+
+
+3. The tools you'll use
+Slack
+Slack is the daily communication layer. Task alerts, blocker reports, client updates, and operational summaries all flow through Slack. There are three types of Slack channels you need to understand.
+
+SmartSuite
+SmartSuite is the source of truth. It stores prospects, clients, onboarding state, campaigns, tasks, optimization reviews, and finance records — and it stores every SOP you'll need.
+
+
+A few rules for SmartSuite hygiene:
+Don't create records unless instructed.
+Don't change fields unless a task or SOP tells you to.
+Don't guess if a field is unclear — ask.
+Google Drive
+Google Drive is the content store. Client folders, raw videos, approved creative, onboarding documents, and script libraries all live in Drive. SmartSuite stores links to Drive files; the actual files stay in Drive.
+A typical client folder contains a Raw Videos folder and an Ad Creative folder. The client uploads raw videos. The video editor processes them. Approved files are placed in the Ad Creative folder. Your job is to ensure the correct approved file is used when building campaigns.
+
+Meta Business Manager
+Meta Business Manager is where client business assets are managed: business portfolio access, ad account access, Facebook page access, Instagram account connection, and lead access. A major part of your role is confirming that RequityAI has the correct access before campaign work begins.
+Meta access is one of the few areas where the system can't act for you — the client must approve access from inside their own Meta account. You may need to request access, check whether it's been granted, confirm the correct assets are visible, and report anything missing.
+Meta Ads Manager
+Meta Ads Manager is where campaigns are built, QA'd, and launched. This is the highest-accuracy area of your role.
+A campaign should never be launched if you are unsure about: the ad account, campaign objective, Special Ad Category, targeting, budget, creative, lead form, or client identity. When in doubt, stop and ask Andrew.
+Lead destinations
+Different clients use different lead destinations: Meta Lead Centre, a CRM (such as GoHighLevel), a spreadsheet, or another integration. Your role is to confirm where leads should go and verify the destination is working before campaigns depend on it. If a test lead is required by the SOP, complete the test and confirm delivery.
+
+4. How automations and agents help you
+AgencyOS uses automation workflows and managed intelligence agents to remove manual coordination work. You don't need to know the technical names of the automations — you only need to know what they do, so you can work with them rather than against them.
+What the automations do
+
+What the managed agents do
+Three managed intelligence agents support the system. They are not replacing the VA — they support the VA by watching data, creating clarity, and helping the system decide what should happen next.
+Campaign Intelligence Agent
+Reviews live campaign data — spend, leads, cost per lead, campaign age, status. Writes a recommended decision into SmartSuite. The recommendation may translate into an operational task for you (e.g., swap creative, build retargeting), or it may be flagged for Andrew if it requires strategic judgment.
+Operations Supervisor Agent
+Watches operational health: stuck records, slow movement, missed updates. Catches problems early so they don't accumulate.
+Sync Agent
+Translates structured Slack updates (when you use the approved /update workflow) into SmartSuite changes. Keeps SmartSuite current without forcing manual field-by-field updates.
+
+
+5. Your operational responsibilities
+Most coordination is automated. The work that remains is the work that needs human eyes and hands. Here's what you'll be doing day-to-day.
+Onboarding setup
+Phase 1 — Access setup
+Confirm RequityAI has the correct Meta access for the client. Specifically:
+Business portfolio access requested and approved by the client.
+Correct ad account is visible.
+Correct Facebook page is visible.
+Correct Instagram account is connected.
+Lead access is granted.
+Client understands how lead notifications will work and has installed the Meta Ads app if required.
+If access is missing, report exactly what is missing — not just "access is not working." Specificity speeds up the fix.
+Phase 2 — Lead destination setup
+Confirm where leads will go and verify the destination works.
+Lead access available; Lead Centre visible if used.
+Lead notifications turned on.
+Client CRM or lead sheet connected if applicable.
+Test lead delivered to the correct destination, if the SOP requires testing.
+Phase 3 — Creative readiness
+The client records videos using the provided scripts. Raw videos go into the Drive Raw Videos folder. The video editor produces approved ad creative and places it in the Ad Creative folder. Your job: ensure the approved file is what gets used at campaign build — never a raw file, never the wrong file.
+Phase 4 — Campaign build
+When access, leads, and creative are all ready, the system creates the campaign build task. You then build the campaign in Meta Ads Manager following the SOP.
+Campaign build standards
+Campaign build is the single most error-sensitive task in the agency. Before building, confirm: client, market, campaign type, budget, creative, and lead destination.
+Inside Meta Ads Manager, verify every one of these settings before saving:
+
+QA — the most important step
+Campaign QA is not a formality. It's where mistakes are caught before money is spent. Open the campaign in Ads Manager and inspect the actual settings — don't rely on what the task says. If one item is wrong and the SOP allows you to fix it, fix it. If you're unsure, report it.
+
+Launch & optimization
+Once approval is given, publish the campaign and update the campaign status. Don't launch unless task, SOP, and approval are all clear.
+After launch, the system will create optimization tasks based on the intelligence agent's review: keep running, pause, retarget, swap approved creative, adjust targeting, or flag for Andrew. Execute the operational ones; escalate the strategic ones. You're not expected to invent strategy — you're expected to execute approved changes accurately.
+
+6. How to communicate
+Slack updates
+Slack is where work becomes visible. Updates should be short, clear, and specific — and they should always include enough information for someone else to act without asking you a follow-up question.
+
+
+When reporting a blocker, include: client name, the tool, what you tried, what happened, what you checked, and what you need next.
+Client channels vs. team channels
+Client channels stay calm, professional, and simple. Don't over-explain internal processes. Don't mention technical errors. Don't blame tools, automation, Meta, or another team member. Don't discuss pricing, contracts, refunds, scope, strategy, or expected results — those are Andrew's conversations.
+If a client asks something you can't answer, acknowledge politely and bring it to Andrew internally.
+
+When to escalate to Andrew
+Escalate when the task requires judgment, approval, or a decision outside the SOP. Specifically:
+Client asks about pricing, contracts, refunds, scope, or expected results.
+You're about to publish a campaign and something doesn't look right.
+Campaign setup doesn't match the SOP.
+Meta access is missing and you've already checked the obvious places.
+Conflicting instructions across task, SOP, and tool.
+The SOP is missing, unclear, or outdated.
+A client seems upset or confused.
+Anything risky.
+
+Don't escalate things already documented in the SOP. Do escalate before guessing on something that could affect a client, campaign, budget, or data.
+
+7. Your daily operating rhythm
+Start of session
+Open Slack. Check #team-operations, your client team channels, and DMs from Andrew.
+Open SmartSuite. Review your assigned tasks.
+Triage: identify what's urgent, what's blocked, and what's straightforward execution.
+For each task
+Read the task in SmartSuite.
+Open the linked SOP.
+Open the linked client / campaign record.
+Open the correct tool (Meta Ads Manager, Drive, etc.).
+Complete the assigned work, following the SOP step by step.
+Check your work — especially in Meta Ads Manager, where small mistakes are expensive.
+Update the task status.
+Post a short confirmation in the team Slack channel if appropriate.
+If blocked, report the blocker with full detail (client, tool, what you tried, what happened, what you need).
+End of session
+No completed tasks left without an update.
+No blockers left unreported.
+Nothing important sitting in your head that isn't visible to the system.
+
+8. Standards & rules
+What good looks like
+You're doing well when the system feels calmer because you're in it. Concretely:
+Tasks completed accurately, on time, with clean updates.
+Campaigns built exactly to the SOP.
+QA catches mistakes before launch — never after.
+Slack updates are clear, specific, and don't require follow-up questions.
+SmartSuite stays clean — no orphaned tasks, no stale statuses.
+Blockers reported quickly with full context.
+Approved creative used; raw files never used by accident.
+Meta access issues documented precisely.
+Lead routing confirmed before campaigns depend on it.
+Andrew doesn't need to chase you for status.
+Good questions asked before risky actions, not after.
+The best operator is not the fastest. The best operator is the one who makes delivery reliable.
+Common mistakes to avoid
+
+
+9. The core operating principle
+AgencyOS works because every part has a role:
+
+
+Your role is the human control point that keeps the system accurate. It is not a small role — without it, the automations have no eyes and no hands.
+
+
+Welcome to RequityAI.
+The most important thing to know on day one
+All Standard Operating Procedures (SOPs) live in SmartSuite. Every task you receive will either link directly to its SOP or point to the client / campaign record where the SOP can be found.
+You are not expected to memorise every process. You are expected to open the task, read the SOP, follow it carefully, and update the system when the work is done.
+If an SOP is missing, unclear, or contradicts what you see in the tool — stop and report it in the internal team channel. Never improvise around a missing SOP.
+Stage | Campaign type | Goal
+1 | Educational video | Build a warm audience using short, client-recorded videos. Identify viewers who are paying attention. The goal is attention, not an immediate lead.
+2 | Retargeting | Reinforce the message to people who watched or engaged with stage one. Audiences are built later — once stage one has enough viewer data — not during onboarding.
+3 | Lead capture | Capture seller leads via Meta lead forms, shown to the warmest audiences. The goal is a completed lead form delivered to the client or their CRM.
+Why this matters for you
+Your job is not to manage the agency from memory. The system holds the state. You follow the assigned task, complete the work, update the system, and report blockers.
+If you complete work but don't update the task, the system will think it's still pending. If you update a task before the work is truly done, the system will move the client forward too early. Both create problems. Update only when the work is actually complete.
+Channel type | What it's for
+client-{name} | External client-facing channel. Onboarding messages, launch notifications, basic operational updates. Only client-safe information goes here. Never post internal issues, technical problems, or team discussion.
+team-{name} | Private internal channel for one client. Used by you and Andrew. Where you report blockers, ask questions, confirm progress, and discuss internal setup.
+#team-operations | Cross-client operations channel. Daily summaries, system alerts, agency-wide updates. Check this regularly to know what's happening across active clients.
+All SOPs live in SmartSuite
+Every task you receive in SmartSuite either links directly to its SOP or points to the client / campaign record where the linked SOP can be found.
+When you open a task, the workflow is always the same:
+Open the task in SmartSuite
+Open the linked SOP
+Open the relevant client or campaign record
+Follow the SOP step by step
+Update the task when the work is complete
+If Slack says one thing and SmartSuite says another, SmartSuite is correct. Raise the discrepancy in the team channel before assuming.
+Drive rules
+Use the approved Ad Creative folder, never raw uploads, when building campaigns.
+Do not assume the newest file is the correct file — read the task to confirm which file to use.
+Do not move or rename files unless instructed.
+If there are multiple possible creative files and the task doesn't specify, ask before building.
+When this happens… | …the system does this
+Prospect books a call | Creates or updates the sales pipeline record. Hydrates company name, phone, and Close lead reference automatically.
+Andrew marks deal Won | Creates the new Client record, Onboarding record, Slack channels, and Drive folder structure. Posts the welcome message into the client channel with niche-specific resources.
+Onboarding step completes | Detects progress and moves the client to the next step. When all prerequisites are met, creates the Campaign Build task automatically.
+Form or video is submitted | Posts an alert to the team channel for that client so you know action is needed.
+Client misses a deadline | Sends a nudge or alerts the team to follow up.
+Campaign reaches QA Ready | Posts the QA checklist into the team channel for confirmation.
+Campaign launches | Notifies the client channel and updates onboarding status.
+Live campaign generates data | Pulls metrics into SmartSuite for review without manual checking inside Meta.
+A workflow fails | Notifies Andrew or the relevant team member directly so problems don't stay hidden.
+Working with the system, not against it
+Don't create duplicate tasks manually if the system already created one. Use the existing task.
+If the system creates a task that looks incorrect, don't silently fix it elsewhere — report it in the team channel.
+If a task asks you to check something in Meta, you still need to physically check it. The agents recommend; you execute and verify.
+Correct client ad account | Correct Facebook page
+Correct Instagram identity | Correct campaign objective
+Special Ad Category set when required | Correct campaign / ad set / ad names
+Correct geography | Correct budget
+Correct placements | Correct creative file (approved, not raw)
+Correct primary text & call to action | Correct lead form (if used)
+Correct lead destination | Correct exclusions (if required by SOP)
+✓ Good | Campaign build for Bayrock is complete. QA passed. Correct ad account, correct page, correct special category, correct market, correct budget, correct creative, and correct lead form confirmed. Waiting for launch approval.
+✗ Poor | Done.
+✓ Progress | Campaign build for First Integrity is complete. QA is now in progress.
+✓ Completion | QA passed for Quick Home Buyers. All campaign settings match the SOP. Ready for Andrew review.
+✓ Blocker | I cannot confirm Instagram access for Real Vantage. The Facebook page is visible, but the Instagram account is not connected inside Business Manager. I checked the assigned business portfolio and ad account. Please advise.
+✗ Avoid | "Done."   /   "It's not working."   /   "Stuck."
+Standard client-channel reply when you need to check something
+"Thanks, I'm checking that now and will confirm shortly."
+Then raise the question in the internal team channel.
+✗  Inviting clients into internal Slack channels.
+✗  Building campaigns in the wrong ad account.
+✗  Forgetting to set Special Ad Category when required.
+✗  Using unapproved creative.
+✗  Assuming the newest Drive file is the correct file.
+✗  Publishing a campaign without QA.
+✗  Marking a task complete before the work is done.
+✗  Ignoring or silently working around a blocker.
+✗  Making strategy decisions without approval.
+✗  Discussing internal automation problems with a client.
+✗  Creating duplicate records or tasks unless instructed.
+✗  Changing SmartSuite fields randomly.
+✗  Guessing when a task is unclear.
+SmartSuite | Holds the truth — records, status, SOPs.
+Slack | Moves communication.
+Google Drive | Holds the content.
+Meta | Where campaigns and leads live.
+Automations | Move records, tasks, and notifications between tools.
+Managed agents | Monitor, analyse, and recommend the next action.
+Andrew | Sales, strategy, approval, escalation.
+You | Execute the operational work with precision.
+When in doubt, the rule is simple
+If the task is clear → execute it.
+If the task is unclear → ask.
+If something is blocked → report it.
+If something looks risky → stop before acting.
+If the work is complete → update the system.
+That is how AgencyOS stays synchronized — and how you become the most valuable person on the team.

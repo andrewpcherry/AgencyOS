@@ -1,0 +1,163 @@
+
+SOP 05
+Campaigns
+Build, QA, and launch every Facebook ad campaign without breaking the reporting system.
+
+TL;DR — In 30 Seconds
+Why No Pixel
+All lead capture uses native Facebook Lead Forms — prospects never leave the platform. Retargeting audiences are built from in-platform engagement (video view percentages), not pixel events. So you never have to install or debug a pixel.
+The 3 Campaign Types
+
+Naming Convention — Get This Exactly Right
+This is what goes into Ads Manager AND the SmartSuite record. The reporting system parses these names. One typo = broken metrics.
+Campaign Status Field — What Each Means
+
+How to Build a Campaign — Step by Step
+You'll get a Task in the Tasks app telling you to build a campaign. Here's the exact sequence:
+Step 1 — Open the Campaign Record
+Go to Campaigns app → Build Queue view.
+Find the campaign assigned to you (Status = Draft).
+Open the record.
+Step 2 — Confirm the Setup Info
+Check these fields are filled in BEFORE you touch Ads Manager:
+Client — correct client is linked
+Market — geographic market is listed
+Campaign Type — Video Views / Retarget / Lead Ad
+Daily Budget — dollar amount is set
+Script Link — Google Drive link to the video script
+Asset Link — Google Drive link to the video file
+Week — which week of the quarter (W1–W13)
+Step 3 — Get the Video
+Click the Asset Link to open Google Drive.
+Download the video file.
+Confirm it matches the Script Link / script ID.
+Step 4 — Build in Ads Manager
+Find the client's Ad Account ID in the Clients app (Ad Acct ID field). Log into their Facebook Ads Manager via their Business Portfolio.
+Create the campaign using the naming convention above.
+Set the campaign objective:
+Video Views → Video Views objective
+Retarget → Engagement objective
+Lead Ad → Leads objective (uses Facebook Lead Form)
+Set the audience:
+Video Views → broad audience (state or major metro, no custom audiences)
+Retarget → use the 25% / 50% video viewer custom audiences (auto-built — confirm they exist before proceeding)
+Lead Ad → use the 75% / 95% video viewer custom audiences (also auto-built from Video Views activity)
+Set the budget to match the Daily Budget field.
+Upload the video.
+Set the CTA based on campaign type:
+Video Views → No CTA button. Ad copy tells viewers to comment "OPTIONS" — drives engagement, builds the retargeting pool.
+Retarget → No CTA button. Same approach. Different video, same "comment OPTIONS" CTA.
+Lead Ad → Facebook Lead Form attached. This is the only campaign that captures contact details.
+Do NOT use zip code targeting. City/state level only — Facebook Housing rules.
+Turn CBO (Campaign Budget Optimisation) OFF.
+Save as draft in Ads Manager. Do NOT publish yet — QA first.
+Step 5 — Fill in the Campaign Record
+Back in SmartSuite, update the campaign record:
+Campaign Name → paste the exact campaign name from Ads Manager
+Ad Set Name → paste the exact ad set name
+Ad Name → paste the exact ad name
+Platform Campaign ID → the Facebook Campaign ID (in Ads Manager URL or settings)
+Owner → set to your name (VA / Operator)
+Status → change from Draft to QA Ready
+
+Step 6 — Complete the QA Checklist
+Tick each QA field in the record. Only tick Yes when you have personally confirmed it.
+Step 7 — Publish and Update
+Once all 9 QA checks are Yes, publish the campaign in Ads Manager.
+In the SmartSuite record, change Status to Live.
+Set Launch Date to today's date.
+Tick Client Launch Notified → Yes (n8n sends the notification, but confirm it happened).
+Mark your Task in the Tasks app as Done.
+
+How Metrics Work — Automatic
+You don't enter metrics. Windsor AI pulls performance data from Facebook every 12 hours and n8n writes it into the campaign record.
+Fields populated automatically:
+Spend, ThruPlays, Cost / ThruPlay
+50% Views, 75% Views, 95% Views
+Saves, Shares, Comments, DMs
+Leads, Cost / Lead
+Last Pull Date — shows when data was last synced
+Key Fields Explained
+Views You'll Use
+What NOT to Do
+Never skip Special Ad Category = Housing. Legal requirement. Skipping risks an ad account ban.
+Never use zip code targeting. Facebook's housing rules prohibit it. City/state only.
+Never publish without all 9 QA checks ticked Yes.
+Never change the Platform Campaign ID once set. Windsor uses it to pull metrics.
+Never mark Status = Live unless the campaign is actually published and running.
+Never leave Asset Link or Script Link blank. If you can't find the file, ask Andrew before building.
+
+Troubleshooting — If Something Looks Wrong
+Cheat Sheet
+
+RequityAI · Agency OS
+WHO THIS IS FOR
+Virtual Assistant — campaign builds and QA. | LAST UPDATED
+May 2, 2026
+ | The big idea
+Each Campaigns record = one Facebook campaign. You build it in Ads Manager and mirror the setup in the SmartSuite record. Windsor AI pulls metrics in automatically.
+Every client runs 3 campaign types stacked: Video Views (cold) → Retarget (warm, auto-built audiences) → Lead Ad (hot, captures leads via FB Lead Form).
+ | Three things that will break the system if you get them wrong
+1. Special Ad Category = Housing must be selected. Skipping = legal risk + ad account ban.
+2. Naming convention must match exactly — reporting + Windsor sync depend on it.
+3. All 9 QA checks must pass before publishing. No shortcuts.
+Type | Audience | Goal
+Video Views | Cold — broad audience, no prior interaction | Get videos in front of distressed sellers. Build the retargeting pool.
+Retarget | Warm — people who watched 25%+ of a Video Views ad | Different talking-head video, same "comment OPTIONS" CTA. Push viewers toward 75%+ for the Lead Ad.
+Lead Ad | Hot — people who watched 75%+ or engaged with content | Capture contact details via Facebook Lead Form. The ONLY campaign that collects leads.
+ | Audiences auto-build
+Retarget and Lead Ad audiences are built automatically from Video Views activity by the Campaign Intelligence Agent. They are NOT created manually during onboarding. If they don't exist yet, the Video Views campaign hasn't run long enough — flag to Andrew, do not proceed.
+Layer | Format | Example
+Campaign | [CAMPAIGN TYPE] | [MARKET] | VIDEO VIEWS | PHOENIX AZ
+Ad Set | [CLIENT CODE] | [AUDIENCE] | [DATE] | APEX | 25PCT-VIEWERS | APR2026
+Ad | [SCRIPT ID] | [SITUATION] | [VERSION] | FC-B2-14 | FORECLOSURE | V1
+Status | What it means
+Draft | Campaign record created but not yet built in Ads Manager.
+QA Ready | Campaign is built in Ads Manager and ready for the QA checklist.
+Live | Campaign passed QA and is running. Metrics tracking.
+Paused | Temporarily paused — budget, review, or client request.
+Cut | Killed — underperforming. Keep the record for reference.
+Completed | Ran its course and ended naturally.
+ | Anything blank?
+Do not start building. Add a note to the Task record and tell Andrew what's missing.
+ | Required by law — never skip
+Set Special Ad Category = Housing. Without it, the ad account can be banned.
+QA Check | How to confirm
+Correct Video Uploaded | Play the video in the ad preview. Compare to the Asset Link.
+Correct Page & IG Identity | Check the "Identity" section in Ads Manager — correct FB page and IG account selected.
+Correct Geo / Market | Check the location targeting matches the client's market.
+Correct Budget Set | Daily budget matches the SmartSuite Campaign record.
+Naming Convention Matches | Campaign / Ad Set / Ad names exactly match the naming convention.
+Special Ad Category = Housing | Open campaign settings. Confirm "Housing" is selected.
+Placements Correct | Usually Facebook + Instagram feeds + Reels.
+CBO Off | Confirm Campaign Budget Optimisation is toggled OFF.
+CTA Correct | Video Views + Retarget: no CTA button, ad copy says "comment OPTIONS". Lead Ad: Facebook Lead Form attached and working.
+ | All 9 QA checks must be Yes before publishing
+If any is No, fix it first. Do not publish a campaign with a No on the QA checklist.
+ | Sync watchdog
+If Last Pull Date is more than 48 hours ago, something is wrong with the Windsor sync. Flag to Andrew.
+Field | What it's for
+Campaign Record Name | The name of this record in SmartSuite. Use the same naming convention as Ads Manager.
+Script Link | Google Drive link to the video script used.
+Asset Link | Google Drive link to the actual video file used in the ad.
+Platform Campaign ID | Facebook Campaign ID. Windsor uses this to pull metrics. Critical — never blank.
+Week | Which week of the quarter (W1–W13). Used for reporting.
+Saves | The Hormozi metric. High saves = content resonating. Your winner signal.
+Owner | Who built / owns this campaign record (VA / Operator).
+Launch Date | The date the campaign went live. Set this when you publish.
+Campaign Type | Video Views / Retarget / Lead Ad — see table above.
+View | When to use it
+Build Queue | VA default. All Status = Draft. Your work queue.
+QA Ready | Campaigns built and waiting for QA. Work through these before starting new builds.
+Live | All running campaigns with metrics visible.
+All Campaigns | Andrew's view. Everything across all clients.
+Problem | What to do
+Metrics haven't updated in 48+ hours | Check Last Pull Date. Flag to Andrew — Windsor sync may have failed.
+Campaign is Live in Ads Manager but Draft in SmartSuite | Update the Status field. Don't let them get out of sync.
+Asset Link is broken or goes to the wrong file | STOP. Do not proceed. Tell Andrew — wrong video in the wrong ad is a real problem.
+Special Ad Category warning in Ads Manager | Housing wasn't selected. Fix before publishing.
+Facebook rejected the ad | Flag to Andrew immediately with the rejection reason.
+Retarget / Lead Ad audiences don't exist yet | The Video Views campaign hasn't run long enough to build audiences. Flag to Andrew — do not proceed.
+ | Build → Launch in one glance
+1. Confirm setup info → 2. Get video → 3. Build in Ads Manager (Special Ad Category = Housing!) → 4. Mirror in SmartSuite → 5. All 9 QA checks YES → 6. Publish → 7. Status = Live + Launch Date set → 8. Mark Task as Done.
+If anything feels off, stop and ask. A broken campaign is more expensive than a delayed one.

@@ -1,0 +1,98 @@
+
+SOP 04
+Onboarding
+How to read the Onboarding board, spot blockers, and unstick clients before campaigns can launch.
+
+TL;DR — In 30 Seconds
+What This App Is For
+Every client created from a won deal lands here with a 19-step onboarding checklist. The Onboarding app tracks progress through 4 phases. When all 19 steps are 🟢, the system auto-triggers the campaign build phase and notifies the VA.
+The Onboarding record is your map. The Tasks app is where you get assigned the actual work to move steps forward.
+The 4 Phases of Onboarding
+Phase 1 — Account Access
+Getting the VA into the client's Meta accounts so we can build campaigns.
+Phase 2 — Lead Setup
+Making sure leads flow correctly from Facebook to the client.
+Phase 3 — Videos
+Getting the client's talking-head videos ready for ads.
+Phase 4 — Campaign Launch
+Building, checking, and launching the campaigns.
+
+How to Read the Onboarding Board
+Open the Onboarding app.
+Open the Onboarding Board view (Kanban).
+Each column = a phase: Access Setup → Video Briefing → Awaiting Videos → Videos Received → Campaign Build → QA → Live.
+Find the client card. Look at what phase they're in.
+If a client is stuck in a phase, open the record to see which specific steps are still 🔴 or 🟠.
+How to Read the Checklist View
+Switch to the Checklist view.
+You'll see a grid with every client and all 19 steps visible.
+Any 🔴 that has been sitting for more than a day is a blocker — investigate it.
+Use the Blocker Notes field to log why something is stuck.
+What the VA Does in This App
+Read — check what steps are assigned to you (the Tasks app will have matching tasks for each step).
+Action — complete the actual work (e.g., request Business Portfolio access, confirm Lead Centre setup).
+Report blockers — if a step can't be completed (e.g., client hasn't given access), log the reason in Blocker Notes and update the matching task in Tasks. The system will notify Andrew.
+Key Fields Explained
+Views You'll Use
+What NOT to Do
+Do not manually flip step dropdowns to Complete. n8n does this. If a step isn't updating, escalate.
+Do not skip steps. Skipping Phase 2 (leads) means the client won't get their leads even if the campaign is live.
+Do not create onboarding records manually. They're created when the deal is marked Won.
+Do not edit the Onboarding Stage field. n8n controls it.
+
+Troubleshooting — If Something Looks Wrong
+Cheat Sheet
+
+RequityAI · Agency OS
+WHO THIS IS FOR
+Virtual Assistant — every day during onboarding handoffs. | LAST UPDATED
+May 2, 2026
+ | The big idea
+The Onboarding app is the gate before campaigns. Every won deal gets one Onboarding record. n8n drives the steps automatically. Your job is to read status, do the actual work the steps describe, and flag blockers.
+Think of it as a traffic light: 🔴 Not Started · 🟠 In Progress · 🟢 Complete. When all 19 steps go 🟢, n8n triggers the campaign build.
+ | You do NOT manually flip step dropdowns
+n8n sets each step to 🟢 once the work is verified. If you complete something and the dropdown stays 🔴, that means a workflow failed — log it in Blocker Notes and tell Andrew. Never force-update the field.
+Step | What needs to happen
+Business Portfolio Access | VA requests access to the client's Meta Business Portfolio. Client approves it.
+Ad Account Visible | The client's ad account appears in the VA's Business Manager.
+Facebook Page Confirmed | The correct Facebook page has been identified and is accessible.
+Instagram Connected | The client's IG account is linked to their Facebook page.
+Meta Ads App Installed | Client has installed the Meta Ads Manager app on their phone (needed for lead notifications).
+Step | What needs to happen
+Leads Access Confirmed | VA can see leads inside the ad account's Lead Centre.
+Lead Notifications Set | Client is receiving email/push notifications when a new lead comes in.
+Lead Centre to CRM | Leads are flowing from Facebook Lead Centre to the client's CRM (GoHighLevel, spreadsheet, etc.).
+Lead Destination Confirmed | Client has confirmed where they want leads to go.
+FB Lead Centre Connected | Facebook Lead Centre is fully set up and connected.
+Step | What needs to happen
+Video Brief Sent | Andrew or the VA has sent the client the video recording brief document. The brief is niche-specific (probate, foreclosure, code violations, etc.) and is selected automatically by the system based on client niche.
+Videos Received | Client has uploaded their recorded videos to their Drive folder.
+Videos Edited | Videos have been edited and processed (moved from Raw Video folder to Ad Creative folder).
+Approved Videos Exist | Videos have been reviewed and are approved for use in ads.
+ | Retargeting audiences are NOT built during onboarding
+Retarget and Lead Ad audiences auto-build from Video Views campaign activity after launch. The Campaign Intelligence Agent monitors view counts and creates a "Create Retargeting Audiences" task in Tasks when thresholds are hit. See SOP 05 (Campaigns).
+Step | What needs to happen
+Campaign Built | VA has built the campaign structure in Ads Manager.
+QA Passed | Campaign passed the full QA checklist (see SOP 05).
+Campaign Launched | Campaign has been set to Active and is running.
+Launch Notification Sent | Client has been notified that their campaign is live.
+Field | What it's for
+Client Name | The client this onboarding record belongs to.
+Client | Linked record to the Clients app.
+Onboarding Stage | Current phase: Access Setup / Video Briefing / Awaiting Videos / Videos Received / Campaign Build / QA / Live. Set automatically by n8n.
+Onboarding Notes | General notes about this client's onboarding. Andrew fills this.
+Blocker Notes | What's stopping progress. VA or Andrew fills this when something is stuck.
+Onboarding Complete | Master flag. Goes 🟢 only when all 19 steps are 🟢. n8n then triggers campaign creation.
+View | When to use it
+Onboarding Board | Daily check. See where every client is in the funnel at a glance.
+Checklist | Detailed view. See every step for every client. Spot blockers fast.
+Problem | What to do
+Step is complete in Ads Manager but still 🔴 in SmartSuite | n8n workflow may have failed. Log in Blocker Notes and tell Andrew.
+Client has been in "Awaiting Videos" for more than 7 days | Check whether the video brief was actually sent. If yes, Andrew needs to follow up with the client.
+A new client doesn't have an onboarding record | The system may not have auto-created it on deal Won. Tell Andrew immediately — he'll add it manually.
+"Onboarding Complete" is still 🔴 but every step looks 🟢 | Reload the page. If still wrong, tell Andrew — likely a formula/logic issue.
+ | Daily routine
+1. Open Onboarding Board. Scan for stuck cards.
+2. Open Tasks app. Pick up your assigned onboarding tasks.
+3. Do the work. When done, mark the matching task in Tasks as Done — n8n updates the Onboarding step.
+4. Anything blocked? Log it in Blocker Notes + post a /blocked update in Slack (see SOP 09).

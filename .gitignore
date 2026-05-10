@@ -1,0 +1,5 @@
+.env
+.env_audit
+
+# n8n workflow exports — contain embedded credentials, fetch from n8n API instead
+*.json

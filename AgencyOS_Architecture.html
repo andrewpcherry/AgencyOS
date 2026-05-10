@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgencyOS — Complete System Architecture</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #232733;
+  --border: #2d3244;
+  --text: #e2e4eb;
+  --text2: #9ca0b0;
+  --accent: #4f8ff7;
+  --green: #34d399;
+  --orange: #f59e0b;
+  --red: #ef4444;
+  --purple: #a78bfa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'SF Pro Text', -apple-system, system-ui, sans-serif; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+h2 { font-size: 22px; font-weight: 600; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); letter-spacing: -0.3px; }
+h3 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; color: var(--accent); }
+h4 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
+p { margin-bottom: 12px; color: var(--text2); font-size: 14.5px; }
+.subtitle { color: var(--text2); font-size: 15px; margin-bottom: 32px; }
+.diagram-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 20px 0; overflow-x: auto; }
+.diagram-box .mermaid { display: flex; justify-content: center; }
+.diagram-box svg { max-width: 100%; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 12px 0; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; margin-right: 4px; }
+.tag-blue { background: #1e3a5f; color: #60a5fa; }
+.tag-green { background: #14412e; color: #34d399; }
+.tag-orange { background: #422006; color: #fbbf24; }
+.tag-purple { background: #2e1065; color: #c084fc; }
+.tag-red { background: #450a0a; color: #fca5a5; }
+.tag-gray { background: #1f2937; color: #9ca3af; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+th { text-align: left; padding: 10px 12px; background: var(--surface2); color: var(--text); font-weight: 600; border-bottom: 2px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text2); }
+tr:hover td { background: var(--surface); }
+code { background: var(--surface2); padding: 1px 6px; border-radius: 3px; font-size: 13px; font-family: 'SF Mono', monospace; }
+.flow-step { display: flex; align-items: flex-start; gap: 12px; margin: 8px 0; }
+.flow-num { width: 28px; height: 28px; min-width: 28px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 2px; }
+.flow-content { flex: 1; }
+.flow-content strong { color: var(--text); }
+.separator { height: 1px; background: var(--border); margin: 40px 0; }
+.callout { background: #1a2332; border-left: 3px solid var(--accent); padding: 16px 20px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.callout-warn { background: #2a1f0e; border-left-color: var(--orange); }
+.callout-red { background: #2a0e0e; border-left-color: var(--red); }
+.callout p { margin: 0; }
+.system-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; }
+.nav { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 24px; z-index: 100; display: flex; gap: 16px; overflow-x: auto; }
+.nav a { color: var(--text2); text-decoration: none; font-size: 13px; white-space: nowrap; }
+.nav a:hover { color: var(--accent); }
+.metric-row { display: flex; gap: 12px; margin: 16px 0; flex-wrap: wrap; }
+.metric { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; flex: 1; min-width: 140px; }
+.metric-val { font-size: 28px; font-weight: 700; color: var(--text); }
+.metric-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#overview">Overview</a>
+  <a href="#systems">Systems</a>
+  <a href="#data-flow">Data Flow</a>
+  <a href="#smartsuite">SmartSuite</a>
+  <a href="#automations">Automations</a>
+  <a href="#va-workflows">VA Workflows</a>
+  <a href="#agents">Claude Agents</a>
+  <a href="#lifecycle">Client Lifecycle</a>
+  <a href="#pressure-test">Pressure Test</a>
+</nav>
+
+<div class="container">
+
+<h1>AgencyOS — Complete System Architecture</h1>
+<p class="subtitle">RequityAI Facebook Ads Agency for Real Estate Investors &middot; April 2026</p>
+
+<div class="metric-row">
+  <div class="metric"><div class="metric-val">6</div><div class="metric-label">Connected Systems</div></div>
+  <div class="metric"><div class="metric-val">8</div><div class="metric-label">SmartSuite Apps</div></div>
+  <div class="metric"><div class="metric-val">22</div><div class="metric-label">Active n8n Workflows</div></div>
+  <div class="metric"><div class="metric-val">3</div><div class="metric-label">Claude Managed Agents</div></div>
+  <div class="metric"><div class="metric-val">9</div><div class="metric-label">SOPs</div></div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="overview">1. What AgencyOS Does</h2>
+
+<p>RequityAI runs Facebook ads for real estate investors (wholesalers) who buy distressed properties. The business model is the <strong>Algorithmic Targeting Content Flywheel</strong>: investors record talking-head videos addressing distressed seller situations (probate, foreclosure, code violations, inherited properties), and RequityAI runs Facebook ad campaigns using these videos with a compounding retargeting system. Revenue comes from setup fees ($1,000–$6,000) plus monthly retainers ($1,500–$3,500).</p>
+
+<p>AgencyOS is the fulfillment automation system that removes the agency founder (Andrew) as the operational bottleneck. It connects sales (Close CRM), operations (SmartSuite), communication (Slack), automation (n8n), content (Google Drive), performance data (Windsor.ai), and AI decision-making (Claude) into a single cohesive system where a VA can execute the entire client lifecycle with minimal oversight.</p>
+
+<!-- ============================================ -->
+<h2 id="systems">2. Connected Systems</h2>
+
+<div class="diagram-box">
+<pre class="mermaid">
+graph TB
+    subgraph "SOURCE OF TRUTH"
+        SS["<b>SmartSuite</b><br/>8 apps, ~200 fields<br/>Command Center"]
+    end
+
+    subgraph "SALES"
+        CRM["<b>Close CRM</b><br/>Pipeline, Calls<br/>Conversations"]
+    end
+
+    subgraph "AUTOMATION"
+        N8N["<b>n8n Cloud</b><br/>22 workflows<br/>Event-driven + Scheduled"]
+    end
+
+    subgraph "COMMUNICATION"
+        SL["<b>Slack</b><br/>#team-tasks<br/>VA ↔ Agent protocol"]
+    end
+
+    subgraph "CONTENT"
+        GD["<b>Google Drive</b><br/>Client folders<br/>Scripts, Videos, Creative"]
+    end
+
+    subgraph "PERFORMANCE"
+        WA["<b>Windsor.ai</b><br/>Facebook Ads API<br/>Spend, CPL, ThruPlays"]
+    end
+
+    subgraph "AI LAYER"
+        CL["<b>Claude (Anthropic)</b><br/>3 managed agents<br/>Decisions + Monitoring"]
+    end
+
+    CRM -->|"Deals, Calls"| N8N
+    N8N -->|"Sync records"| SS
+    N8N -->|"Notifications"| SL
+    WA -->|"Ad metrics"| N8N
+    CL -->|"Decisions via API"| N8N
+    SL -->|"/update commands"| N8N
+    N8N -->|"Create folders"| GD
+
+    style SS fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style CRM fill:#14412e,stroke:#34d399,color:#fff
+    style N8N fill:#422006,stroke:#fbbf24,color:#fff
+    style SL fill:#2e1065,stroke:#c084fc,color:#fff
+    style GD fill:#1f2937,stroke:#9ca3af,color:#fff
+    style WA fill:#450a0a,stroke:#fca5a5,color:#fff
+    style CL fill:#1a1a3e,stroke:#818cf8,color:#fff
+</pre>
+</div>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>SmartSuite <span class="tag tag-blue">Command Center</span></h4>
+    <p>The operational source of truth. 8 apps track every entity from lead to payment. VAs work here daily. Every other system reads from or writes to SmartSuite.</p>
+  </div>
+  <div class="card">
+    <h4>Close CRM <span class="tag tag-green">Sales</span></h4>
+    <p>Andrew's sales tool. Tracks leads, calls, and deal stages. Two n8n workflows sync Close → SmartSuite every 12 hours. Close is write-only for Andrew; SmartSuite is the downstream consumer.</p>
+  </div>
+  <div class="card">
+    <h4>n8n Cloud <span class="tag tag-orange">Automation Engine</span></h4>
+    <p>22 active workflows handle all inter-system data movement, alerts, and AI agent orchestration. Mix of scheduled (every 12h, 6h, daily) and event-driven (Slack messages).</p>
+  </div>
+  <div class="card">
+    <h4>Slack <span class="tag tag-purple">Communication</span></h4>
+    <p>Two-way bridge between VAs and the system. VAs receive task notifications and send <code>/update</code> commands that write back to SmartSuite. Agents post briefings and alerts.</p>
+  </div>
+  <div class="card">
+    <h4>Google Drive <span class="tag tag-gray">Content Store</span></h4>
+    <p>Each client gets a Drive folder with subfolders for Scripts, Raw Video, and Ad Creative. SmartSuite stores the folder URL; n8n creates folders automatically on client creation.</p>
+  </div>
+  <div class="card">
+    <h4>Windsor.ai <span class="tag tag-red">Performance Data</span></h4>
+    <p>Pulls Facebook Ads metrics (spend, CPL, thruplays, leads) every 12 hours via API. Data writes to SmartSuite Campaign records for reporting and AI analysis.</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="data-flow">3. End-to-End Data Flow</h2>
+
+<h3>3.1 Sales → Operations Pipeline</h3>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart LR
+    A["Andrew takes<br/>sales call"] --> B["Logs in<br/>Close CRM"]
+    B --> C{"Deal Won?"}
+    C -->|No| D["Follow up /<br/>Lost"]
+    C -->|Yes| E["n8n: Close →<br/>Pipeline Sync"]
+    E --> F["SmartSuite<br/>Pipeline record"]
+    F --> G["n8n: Deal Won →<br/>Create Client"]
+    G --> H["SmartSuite<br/>Client record"]
+    G --> I["SmartSuite<br/>Onboarding record<br/>(19 steps)"]
+    G --> J["Google Drive<br/>Client folder"]
+    G --> K["Slack<br/>#team-tasks<br/>notification"]
+
+    style A fill:#14412e,stroke:#34d399,color:#fff
+    style F fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style H fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style I fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style J fill:#1f2937,stroke:#9ca3af,color:#fff
+    style K fill:#2e1065,stroke:#c084fc,color:#fff
+</pre>
+</div>
+
+<h3>3.2 Onboarding → Campaign Build → Live</h3>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TB
+    subgraph "ONBOARDING (19 steps)"
+        O1["Phase 1: Access Setup<br/>Portfolio, Ad Account,<br/>FB Page, Instagram"]
+        O2["Phase 2: Lead Setup<br/>Lead Forms, Notifications,<br/>CRM Connection"]
+        O3["Phase 3: Content<br/>Video Brief, Record,<br/>Edit, Approve"]
+        O4["Phase 4: Campaign Build<br/>Build 3 campaigns,<br/>QA, Launch"]
+    end
+
+    O1 --> O2 --> O3 --> O4
+
+    O3 -->|"Videos ready"| CB["n8n: Prerequisites Met →<br/>Auto-Create Campaign<br/>Build Tasks"]
+
+    CB --> T1["Task: Build Campaign<br/>(CSV Import) — VIDEO VIEWS"]
+    CB --> T2["Task: Build Campaign<br/>(Manual) — RETARGET"]
+    CB --> T3["Task: Build Campaign<br/>(Manual) — LEAD AD"]
+
+    T1 --> QA["Task: QA Campaign"]
+    T2 --> QA
+    T3 --> QA
+
+    QA --> LAUNCH["Task: Launch Campaign"]
+    LAUNCH --> LIVE["Campaign Status: LIVE"]
+
+    LIVE --> METRICS["Windsor.ai pulls<br/>metrics every 12h"]
+    LIVE --> REVIEW["72hr Review Trigger<br/>creates Optimization record"]
+
+    style O1 fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style O2 fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style O3 fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style O4 fill:#1e3a5f,stroke:#60a5fa,color:#fff
+    style LIVE fill:#14412e,stroke:#34d399,color:#fff
+    style METRICS fill:#450a0a,stroke:#fca5a5,color:#fff
+</pre>
+</div>
+
+<h3>3.3 Performance Monitoring Loop</h3>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart LR
+    WI["Windsor.ai<br/>Facebook API"] -->|"Every 12h"| N1["n8n: Windsor →<br/>SmartSuite Metrics"]
+    N1 -->|"Update"| CAM["Campaign records<br/>(spend, CPL, leads,<br/>thruplays)"]
+
+    CAM --> N2["n8n: Campaign<br/>Intelligence Agent"]
+    N2 -->|"Prompt"| CL["Claude Haiku<br/>analyzes all<br/>live campaigns"]
+    CL -->|"Returns decisions"| N3["Write to<br/>Optimization records"]
+    N3 --> SL["DM Andrew<br/>summary in Slack"]
+
+    CAM --> N4["n8n: CPL Threshold<br/>Alert"]
+    N4 -->|"CPL ≤ $75<br/>+ 3 leads"| SL2["DM Andrew:<br/>scalable campaign"]
+
+    CAM --> N5["n8n: Creative<br/>Fatigue Alert"]
+    N5 -->|"28+ days<br/>same creative"| SL3["Slack: swap<br/>creative alert"]
+
+    style WI fill:#450a0a,stroke:#fca5a5,color:#fff
+    style CL fill:#1a1a3e,stroke:#818cf8,color:#fff
+    style CAM fill:#1e3a5f,stroke:#60a5fa,color:#fff
+</pre>
+</div>
+
+<!-- ============================================ -->
+<h2 id="smartsuite">4. SmartSuite — The 8-App Structure</h2>
+
+<p>SmartSuite is the command center. Every app below is connected; records link to each other via SmartSuite's linked record fields. The apps are arranged in lifecycle order.</p>
+
+<table>
+<thead>
+<tr><th>#</th><th>App</th><th>Purpose</th><th>Key Fields</th><th>Linked To</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td><strong>Pipeline</strong></td>
+  <td>Sales deals from Close CRM. Tracks deal stage, value, contact info.</td>
+  <td>deal_stage (10 stages), deal_value, lead_name, close_deal_id</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><strong>Conversation Tracker</strong></td>
+  <td>Call/SMS activity from Close CRM. Feeds metrics dashboard.</td>
+  <td>outcome (Interested/Maybe/Not Interested), call_booked, close_activity_id</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><strong>Clients</strong></td>
+  <td>Master client record. Created when deal is won. One record per paying client.</td>
+  <td>contact_name, facebook_page_url, client_ad_account_id, drive_folder_url, status (Active/Paused/Churned)</td>
+  <td>→ Campaigns, Tasks</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><strong>Onboarding</strong></td>
+  <td>19-step checklist controlling the path from signed client to live campaigns.</td>
+  <td>19 step_ fields (each: 1=Not Started, 2=In Progress, 3=Complete), onboarding_stage</td>
+  <td>→ Client</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><strong>Campaigns</strong></td>
+  <td>Every ad campaign. 3 per client (Video Views, Retarget, Lead Ad).</td>
+  <td>campaign_type, status (Draft→QA Ready→Live→Paused→Cut), spend, cost_lead, thruplays, leads</td>
+  <td>→ Client, Tasks, Optimization</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><strong>Tasks</strong></td>
+  <td>VA work queue. 15 task types covering every operational action.</td>
+  <td>type (15 values), status (To Do/In Progress/Blocked/Done), assigned_to, due_date</td>
+  <td>→ Client, Campaign</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><strong>Optimization</strong></td>
+  <td>Performance review records. Created 72h after campaign launch.</td>
+  <td>decision (Keep Running/Cut/Retarget Test/Lead Ad Candidate/Swap Creative), why</td>
+  <td>→ Campaign, Tasks</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><strong>Finance</strong></td>
+  <td>Invoice and payment tracking per client.</td>
+  <td>amount, payment_status (Paid/Unpaid/Overdue), payment_type (Setup/Monthly)</td>
+  <td>→ Client</td>
+</tr>
+</tbody>
+</table>
+
+<div class="diagram-box">
+<pre class="mermaid">
+erDiagram
+    PIPELINE ||--o| CLIENTS : "deal won creates"
+    CLIENTS ||--|| ONBOARDING : "has one"
+    CLIENTS ||--o{ CAMPAIGNS : "has many"
+    CLIENTS ||--o{ TASKS : "has many"
+    CLIENTS ||--o{ FINANCE : "has many"
+    CAMPAIGNS ||--o{ TASKS : "has many"
+    CAMPAIGNS ||--o{ OPTIMIZATION : "reviewed by"
+    CONVERSATION_TRACKER }o--o| PIPELINE : "feeds"
+</pre>
+</div>
+
+<!-- ============================================ -->
+<h2 id="automations">5. All 22 n8n Workflows — Mapped</h2>
+
+<h3>5.1 Data Sync Workflows (Close CRM → SmartSuite)</h3>
+
+<table>
+<thead><tr><th>Workflow</th><th>Trigger</th><th>What It Does</th><th>From → To</th></tr></thead>
+<tbody>
+<tr><td><strong>Close CRM → Pipeline Sync</strong></td><td>Every 12h</td><td>Fetches all active Close CRM opportunities, creates or updates Pipeline records in SmartSuite. Maps Close deal stages to SmartSuite deal_stage values.</td><td>Close CRM → SmartSuite Pipeline</td></tr>
+<tr><td><strong>Close CRM → Conversation Tracker</strong></td><td>Every 12h</td><td>Fetches call/SMS activities from last 24h, deduplicates by close_activity_id, creates Conversation Tracker records.</td><td>Close CRM → SmartSuite Conversation Tracker</td></tr>
+<tr><td><strong>Windsor AI → SmartSuite Metrics</strong></td><td>Every 12h</td><td>Pulls Facebook ad data (spend, CPL, thruplays, leads) from Windsor.ai, matches to Campaign records by name, patches metrics. DMs Andrew a summary.</td><td>Windsor.ai → SmartSuite Campaigns → Slack</td></tr>
+</tbody>
+</table>
+
+<h3>5.2 Client Lifecycle Workflows</h3>
+
+<table>
+<thead><tr><th>Workflow</th><th>Trigger</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>Deal Won → Create Client + Onboarding</strong></td><td>Manual</td><td>When a deal is won, creates a Client record, creates an Onboarding record (19 steps all set to "Not Started"), notifies #team-tasks.</td></tr>
+<tr><td><strong>Clients → Drive Folder → Slack</strong></td><td>Every 1h</td><td>Checks for new Client records without a Drive folder. Creates a Google Drive folder with subfolders (Scripts, Raw Video, Ad Creative), stores the URL on the Client record, notifies Slack.</td></tr>
+<tr><td><strong>Onboarding Progression</strong></td><td>Every 12h</td><td>Scans Onboarding records for step_ field changes. When a step is completed, marks the next logical step as "In Progress". Tracks progression through the 19-step checklist.</td></tr>
+<tr><td><strong>Prerequisites Met → Campaign Build Tasks</strong></td><td>Every 12h</td><td>When all audience steps + approved videos = Complete AND campaign_built = Not Started, auto-creates 3 campaign build tasks (Video Views via CSV Import, Retarget Manual, Lead Ad Manual).</td></tr>
+<tr><td><strong>Campaign QA Ready → Slack Checklist</strong></td><td>Every 12h</td><td>Finds campaigns with status "QA Ready", posts a QA checklist to #team-tasks for Andrew to review before launch.</td></tr>
+</tbody>
+</table>
+
+<h3>5.3 Task Management Workflows</h3>
+
+<table>
+<thead><tr><th>Workflow</th><th>Trigger</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>Task Assigned → Slack</strong></td><td>Every 12h</td><td>Finds new tasks created in last 12h, posts assignment notification to #team-tasks. When a task is marked Done, DMs Andrew a completion confirmation.</td></tr>
+<tr><td><strong>Task Blocked → DM Andrew</strong></td><td>Every 12h</td><td>Finds tasks with status "Blocked", DMs Andrew with the blocker details so he can unblock.</td></tr>
+<tr><td><strong>Slack Task Router — /done</strong></td><td>Manual</td><td>VA types <code>/done [action]</code> in Slack. Workflow looks up the client's Onboarding record and marks the corresponding step as Complete.</td></tr>
+</tbody>
+</table>
+
+<h3>5.4 Performance & Intelligence Workflows</h3>
+
+<table>
+<thead><tr><th>Workflow</th><th>Trigger</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>Campaign Intelligence Agent</strong></td><td>Every 12h</td><td>Sends all live campaign data to Claude Haiku for analysis. Claude returns a decision per campaign (Keep Running / Cut / Retarget Test / Lead Ad Candidate / Swap Creative). Decisions are written to Optimization records. Summary DM'd to Andrew.</td></tr>
+<tr><td><strong>72hr Review Trigger</strong></td><td>Every 12h</td><td>Finds campaigns launched 72+ hours ago that don't have an Optimization record yet. Creates the Optimization record to trigger the Intelligence Agent review.</td></tr>
+<tr><td><strong>CPL Threshold Alert</strong></td><td>Every 12h</td><td>Finds Live campaigns with CPL ≤ $75, 3+ leads, and fresh metrics. DMs Andrew: "This campaign is scalable — consider increasing budget."</td></tr>
+<tr><td><strong>Creative Fatigue Alert</strong></td><td>Weekly</td><td>Finds campaigns running 28+ days with the same creative. Alerts to swap creative to prevent fatigue.</td></tr>
+<tr><td><strong>Decision Router</strong></td><td>Every 12h</td><td>Reads Optimization records with pending decisions. Routes each decision to the appropriate action: create cut task, create retarget build task, etc.</td></tr>
+</tbody>
+</table>
+
+<h3>5.5 Communication & Monitoring Workflows</h3>
+
+<table>
+<thead><tr><th>Workflow</th><th>Trigger</th><th>What It Does</th></tr></thead>
+<tbody>
+<tr><td><strong>SmartSuite Sync Agent</strong></td><td>Slack Event</td><td>Listens for VA <code>/update [App] | Client: X | Field: Value</code> messages. Parses, looks up the SmartSuite record, patches the fields, reacts with ✅ or ⚠️.</td></tr>
+<tr><td><strong>Slack Ops Supervisor</strong></td><td>3x/day (8am, 2pm, 8pm ET)</td><td>Aggregates SmartSuite data across all apps. Sends Claude a system status prompt. Claude generates an ops health summary. Posted to Slack + DM'd to Andrew.</td></tr>
+<tr><td><strong>Daily Ops Briefing</strong></td><td>8am daily</td><td>Morning summary: active clients, onboarding status, overdue tasks, campaigns needing attention. Posted to #team-tasks.</td></tr>
+<tr><td><strong>Stale Record Detector</strong></td><td>Every 12h</td><td>Finds records not updated in 7+ days across all apps. Flags data hygiene issues in Slack.</td></tr>
+<tr><td><strong>Client Onboarding — Slack Trigger</strong></td><td>Manual</td><td>Full onboarding kickoff flow — creates records, Drive folder, and sends welcome notification.</td></tr>
+<tr><td><strong>Onboarding Health Monitor</strong></td><td>Manual</td><td>Checks all active onboarding records for stuck steps, overdue milestones. Reports health status.</td></tr>
+</tbody>
+</table>
+
+<!-- ============================================ -->
+<h2 id="va-workflows">6. VA Workflows — Day-to-Day Operations</h2>
+
+<p>The VA operates primarily in SmartSuite (for task execution) and Slack (for communication with the system). Here's how a VA's day works:</p>
+
+<h3>6.1 Morning Startup</h3>
+<div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><strong>Check Slack #team-tasks</strong> — The Daily Ops Briefing (8am) tells the VA what's active, overdue, and needs attention. Task assignment notifications show new work.</div></div>
+<div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><strong>Open SmartSuite Tasks app</strong> — Filter by "Assigned To = VA" and "Status = To Do" or "In Progress". This is the work queue.</div></div>
+<div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><strong>Pick highest priority task</strong> — Tasks have priority (Urgent/High/Normal/Low) and due dates. Start with Urgent/High.</div></div>
+
+<h3>6.2 Core VA Task Types (15 total)</h3>
+
+<table>
+<thead><tr><th>Task Type</th><th>What The VA Does</th><th>SOP</th></tr></thead>
+<tbody>
+<tr><td><strong>Set Up Ad Account Access</strong></td><td>Get added to client's Facebook Business Portfolio, verify ad account visible, confirm page access</td><td>SOP 04</td></tr>
+<tr><td><strong>Set Up Lead Forms</strong></td><td>Create Facebook Lead Forms in the client's ad account, set up lead notifications</td><td>SOP 04</td></tr>
+<tr><td><strong>Request Videos</strong></td><td>Send video brief to client with script list, situation codes, recording instructions</td><td>SOP 04</td></tr>
+<tr><td><strong>Upload Creative</strong></td><td>Move approved videos from Raw Video → Ad Creative folder in Drive</td><td>SOP 04</td></tr>
+<tr><td><strong>Write Script</strong></td><td>Review/edit AI-generated scripts for client's voice/market</td><td>SOP 04</td></tr>
+<tr><td><strong>Build Campaign (CSV Import)</strong></td><td>Build Video Views campaign using CSV bulk import into Facebook Ads Manager. Primary method for scale.</td><td>SOP 05</td></tr>
+<tr><td><strong>Build Campaign (Manual)</strong></td><td>Build Retarget or Lead Ad campaign manually in Facebook Ads Manager</td><td>SOP 05</td></tr>
+<tr><td><strong>QA Campaign</strong></td><td>Review campaign setup: correct audience, creative, CTA, budget, naming convention</td><td>SOP 05</td></tr>
+<tr><td><strong>Launch Campaign</strong></td><td>Toggle campaign live after QA approval</td><td>SOP 05</td></tr>
+<tr><td><strong>Campaign Review</strong></td><td>Pull metrics, compare to thresholds, recommend action</td><td>SOP 07</td></tr>
+<tr><td><strong>Cut / Pause Campaign</strong></td><td>Execute a cut or pause decision from the Intelligence Agent</td><td>SOP 07</td></tr>
+<tr><td><strong>Create Retargeting Audiences</strong></td><td>Build custom audiences in Facebook (25%, 50%, 75%, 95% video viewers, post engagers, DMs, form openers)</td><td>SOP 05</td></tr>
+<tr><td><strong>Update SmartSuite Records</strong></td><td>Manual data entry or corrections in SmartSuite</td><td>SOP 06</td></tr>
+<tr><td><strong>Escalation Follow-Up</strong></td><td>Follow up on a flagged issue from Andrew or the Ops Supervisor</td><td>SOP 06</td></tr>
+<tr><td><strong>Admin</strong></td><td>Catch-all for miscellaneous operational tasks</td><td>SOP 06</td></tr>
+</tbody>
+</table>
+
+<h3>6.3 VA ↔ System Communication Protocol</h3>
+
+<p>VAs send structured messages in Slack to update SmartSuite without opening it. The Sync Agent parses these and writes directly to the database.</p>
+
+<div class="card">
+<h4>VA → System (Slack /update commands)</h4>
+<p><code>/update Tasks | Client: Ritsel Homes | Task: Build Campaign | Status: Done</code></p>
+<p><code>/update Onboarding | Client: Ritsel Homes | Step: Videos Received | Status: Complete</code></p>
+<p><code>/update Pipeline | Client: Ritsel Homes | Deal Stage: Won</code></p>
+<p>The Sync Agent parses the message, looks up the record by exact client name match, patches the fields, and reacts with ✅ (success) or ⚠️ (error).</p>
+</div>
+
+<div class="card" style="margin-top: 12px;">
+<h4>System → VA (automated notifications)</h4>
+<p>Task assignments, onboarding milestones, blocked task alerts, daily briefings, campaign QA checklists, and ops supervisor health checks are all posted to #team-tasks automatically by n8n workflows.</p>
+</div>
+
+<!-- ============================================ -->
+<h2 id="agents">7. Claude Managed Agents</h2>
+
+<p>Three AI agents run inside n8n workflows, each calling the Anthropic API (Claude Haiku) for specific decision-making tasks.</p>
+
+<div class="card-grid">
+  <div class="card">
+    <h4>Campaign Intelligence Agent <span class="tag tag-purple">Decision Maker</span></h4>
+    <p><strong>Schedule:</strong> Every 12 hours</p>
+    <p><strong>Input:</strong> All live campaign data (spend, CPL, leads, thruplays, saves, comments, DMs) from SmartSuite</p>
+    <p><strong>Output:</strong> Per-campaign decision written to Optimization records: Keep Running, Cut, Retarget Test, Lead Ad Candidate, or Swap Creative, with reasoning</p>
+    <p><strong>Impact:</strong> Automates the most time-consuming analytical task — reviewing campaign performance and deciding what to do next</p>
+  </div>
+  <div class="card">
+    <h4>Ops Supervisor Agent <span class="tag tag-blue">Monitor</span></h4>
+    <p><strong>Schedule:</strong> 3x/day (8am, 2pm, 8pm ET, Mon-Fri)</p>
+    <p><strong>Input:</strong> Aggregated system state across all SmartSuite apps — client statuses, task queues, onboarding progress, campaign health</p>
+    <p><strong>Output:</strong> Narrative health report posted to Slack + DM to Andrew</p>
+    <p><strong>Impact:</strong> Andrew gets system-wide situational awareness without checking any dashboards</p>
+  </div>
+  <div class="card">
+    <h4>SmartSuite Sync Agent <span class="tag tag-green">Data Bridge</span></h4>
+    <p><strong>Trigger:</strong> Real-time (Slack event)</p>
+    <p><strong>Input:</strong> VA <code>/update</code> messages in Slack</p>
+    <p><strong>Output:</strong> SmartSuite record updates + ✅/⚠️ Slack reaction</p>
+    <p><strong>Impact:</strong> VAs can update the database without leaving Slack — reduces context switching and friction</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<h2 id="lifecycle">8. Complete Client Lifecycle — End to End</h2>
+
+<div class="diagram-box">
+<pre class="mermaid">
+flowchart TB
+    subgraph "SALES (Close CRM)"
+        S1["Lead comes in"] --> S2["Andrew calls"]
+        S2 --> S3["Proposal sent"]
+        S3 --> S4["Deal Won<br/>Invoice paid"]
+    end
+
+    subgraph "ONBOARDING (SmartSuite + Drive)"
+        S4 --> O1["Client + Onboarding<br/>records created"]
+        O1 --> O2["Drive folder<br/>auto-created"]
+        O2 --> O3["VA: Set up<br/>ad account access"]
+        O3 --> O4["VA: Set up<br/>lead forms"]
+        O4 --> O5["VA: Send video<br/>brief + scripts"]
+        O5 --> O6["Client records<br/>videos"]
+        O6 --> O7["VA: Process<br/>videos"]
+    end
+
+    subgraph "CAMPAIGN BUILD (SmartSuite + Facebook)"
+        O7 --> C1["n8n auto-creates<br/>3 build tasks"]
+        C1 --> C2["VA: Build Video<br/>Views campaign<br/>(CSV Import)"]
+        C1 --> C3["VA: Build Retarget<br/>campaign (Manual)"]
+        C1 --> C4["VA: Build Lead Ad<br/>campaign (Manual)"]
+        C2 --> C5["QA Review"]
+        C3 --> C5
+        C4 --> C5
+        C5 --> C6["Launch"]
+    end
+
+    subgraph "LIVE MANAGEMENT (Automated)"
+        C6 --> L1["Windsor pulls<br/>metrics q12h"]
+        L1 --> L2["Intelligence Agent<br/>analyzes q12h"]
+        L2 --> L3{"Decision"}
+        L3 -->|"Keep Running"| L1
+        L3 -->|"Cut"| L4["VA pauses<br/>campaign"]
+        L3 -->|"Retarget Test"| L5["VA builds<br/>retarget variant"]
+        L3 -->|"Lead Ad<br/>Candidate"| L6["VA builds<br/>lead ad"]
+        L3 -->|"Swap Creative"| L7["VA swaps<br/>creative"]
+        L4 --> L1
+        L5 --> L1
+        L6 --> L1
+        L7 --> L1
+    end
+
+    subgraph "RECURRING"
+        L1 --> R1["Monthly invoice"]
+        R1 --> R2["Finance record<br/>tracks payment"]
+    end
+
+    style S4 fill:#14412e,stroke:#34d399,color:#fff
+    style C6 fill:#14412e,stroke:#34d399,color:#fff
+    style L2 fill:#1a1a3e,stroke:#818cf8,color:#fff
+</pre>
+</div>
+
+<h3>8.1 Timing Summary</h3>
+<table>
+<thead><tr><th>Phase</th><th>Duration</th><th>Key Bottleneck</th></tr></thead>
+<tbody>
+<tr><td>Sales → Deal Won</td><td>1–14 days</td><td>Client decision speed</td></tr>
+<tr><td>Onboarding → Videos Ready</td><td>5–14 days</td><td>Client recording videos</td></tr>
+<tr><td>Campaign Build</td><td>1–2 days</td><td>VA execution speed</td></tr>
+<tr><td>QA + Launch</td><td>1 day</td><td>Andrew review</td></tr>
+<tr><td>First Performance Data</td><td>72 hours after launch</td><td>Automated (Windsor + n8n)</td></tr>
+<tr><td>First AI Review</td><td>72 hours after launch</td><td>Automated (Intelligence Agent)</td></tr>
+<tr><td>Ongoing Optimization</td><td>Continuous (every 12h)</td><td>Fully automated</td></tr>
+</tbody>
+</table>
+
+<!-- ============================================ -->
+<h2 id="pressure-test">9. Pressure Test — Weaknesses & Recommendations</h2>
+
+<div class="callout callout-red">
+<p><strong>This section is the honest assessment. Not affirmation — critical analysis.</strong></p>
+</div>
+
+<h3>WEAKNESS 1: Polling Architecture — 12h Latency on Critical Paths</h3>
+<div class="card">
+<p><strong>Problem:</strong> 16 of 22 workflows use scheduled polling (every 12 hours). When a VA marks a campaign as "QA Ready" in SmartSuite, it can take up to 12 hours for the QA checklist to appear in Slack. Same for task assignments, onboarding progression, and blocked task alerts. This creates a sluggish system where the VA is waiting for the machine to catch up.</p>
+<p><strong>Impact:</strong> High. A VA who finishes a campaign build at 9am won't see the QA notification until 9pm at worst. This breaks the promise of "real-time operations."</p>
+<p><strong>Fix:</strong> SmartSuite has webhook support (Zapier/Make triggers on record changes). Replace the 12h schedules with SmartSuite webhooks for the 6 most time-sensitive workflows: Task Assigned, Onboarding Progression, Prerequisites Met, Campaign QA Ready, Task Blocked, and 72hr Review Trigger. Keep 12h polling for data sync workflows (Close CRM, Windsor) where lag is acceptable.</p>
+<p><strong>Effort:</strong> Medium. Each workflow needs its trigger node swapped from Schedule to Webhook, and SmartSuite automations configured to fire on record change.</p>
+</div>
+
+<h3>WEAKNESS 2: No Error Recovery or Retry Logic</h3>
+<div class="card">
+<p><strong>Problem:</strong> Every workflow is fire-and-forget. If a SmartSuite API call fails (rate limit, timeout, transient error), the workflow errors silently and moves on. There's no retry, no dead-letter queue, no alert that data was lost. The only way to know something failed is to check n8n's execution logs manually.</p>
+<p><strong>Impact:</strong> High. A failed Pipeline Sync means Close CRM deals aren't reflected in SmartSuite. A failed Windsor pull means campaigns show stale metrics. A failed Intelligence Agent run means no optimization decisions for 12+ hours.</p>
+<p><strong>Fix:</strong> Add a global error handler workflow. n8n supports error workflows — when any workflow fails, it triggers a designated error handler that posts to a <code>#system-errors</code> Slack channel with the workflow name, error message, and timestamp. Add simple retry logic (n8n's built-in retry on failure) to the 5 most critical workflows.</p>
+<p><strong>Effort:</strong> Low. One error handler workflow + enable retry on 5 workflows.</p>
+</div>
+
+<h3>WEAKNESS 3: Hardcoded API Keys in Code Nodes</h3>
+<div class="card">
+<p><strong>Problem:</strong> The SmartSuite API token (<code>Token 716c2356...</code>), Close CRM API key, Windsor API key, and Anthropic API key are all hardcoded as string constants inside n8n Code nodes. If any key rotates, every workflow that uses it must be manually found and updated. We just experienced this with the Close CRM key — 2 workflows had to be patched.</p>
+<p><strong>Impact:</strong> Medium. Key rotation is infrequent but when it happens, it's a fire drill. Also a security concern — API keys are visible to anyone with n8n read access.</p>
+<p><strong>Fix:</strong> Move all API keys to n8n credentials or environment variables. Reference them via <code>this.getCredentials()</code> or <code>$env.SMARTSUITE_TOKEN</code> instead of hardcoding. This centralizes key management and supports rotation without code changes.</p>
+<p><strong>Effort:</strong> Medium. Requires touching every Code node in ~18 workflows, but it's a mechanical find-and-replace.</p>
+</div>
+
+<h3>WEAKNESS 4: Single-Threaded Client Matching</h3>
+<div class="card">
+<p><strong>Problem:</strong> The Sync Agent and several workflows identify clients by title string matching. If two clients have similar names (e.g., "Smith Properties" and "Smith Properties LLC"), the wrong record could be matched. We already hit this — the agent matched "Sunlit Properties" instead of "Ritsel Homes" before the exact-match fix.</p>
+<p><strong>Impact:</strong> Medium. The exact-match fix helps but creates a new problem: the VA must type the client name exactly as it appears in SmartSuite, including capitalization and spacing. Any typo → "Client not found."</p>
+<p><strong>Fix:</strong> Add a client alias system. When a Client record is created, generate a short code (e.g., "RSH" for Ritsel Homes). VAs can use either the full name or the code. The Sync Agent checks the code first (fast, unambiguous), then falls back to exact title match.</p>
+<p><strong>Effort:</strong> Low. Add a <code>client_code</code> field to Clients, populate on creation, update the Sync Agent's lookup logic.</p>
+</div>
+
+<h3>WEAKNESS 5: No Onboarding SLA Enforcement</h3>
+<div class="card">
+<p><strong>Problem:</strong> The 19-step onboarding checklist tracks progress but doesn't enforce timing. A client could sit at "Video Brief Sent" for 3 weeks with no automated follow-up. The Onboarding Health Monitor exists but is manual-trigger only — no one remembers to run it.</p>
+<p><strong>Impact:</strong> High. Onboarding delays directly impact time-to-revenue. A client who signed 3 weeks ago and still hasn't recorded videos is a churn risk.</p>
+<p><strong>Fix:</strong> Put the Onboarding Health Monitor on a daily schedule. Add SLA thresholds: if any step has been "In Progress" for 5+ days, auto-escalate to Andrew via Slack DM with the specific stuck step. Track <code>step_started_date</code> on each onboarding step to measure time-in-step.</p>
+<p><strong>Effort:</strong> Medium. Change trigger to daily, add date tracking fields, add SLA comparison logic.</p>
+</div>
+
+<h3>WEAKNESS 6: Windsor.ai Campaign Name Matching is Fragile</h3>
+<div class="card">
+<p><strong>Problem:</strong> The Windsor workflow matches Facebook campaign data to SmartSuite records by campaign name string. It uses a loose <code>includes</code> check. If the campaign naming convention isn't followed exactly, metrics land on the wrong record or get dropped entirely. There's no report of unmatched campaigns.</p>
+<p><strong>Impact:</strong> Medium. Silent data loss — if a campaign is misnamed, its metrics disappear into a void. Andrew sees $0 spend on a campaign that's actually running.</p>
+<p><strong>Fix:</strong> Add an "unmatched campaigns" report. After the Windsor pull, any campaign data that didn't match a SmartSuite record should be collected and reported in Slack. Also consider storing the Facebook Campaign ID on the SmartSuite record for deterministic matching instead of name-based fuzzy matching.</p>
+<p><strong>Effort:</strong> Low for the report; Medium for the ID-based matching.</p>
+</div>
+
+<h3>WEAKNESS 7: Claude Intelligence Agent Has No Feedback Loop</h3>
+<div class="card">
+<p><strong>Problem:</strong> The Campaign Intelligence Agent makes decisions (Keep Running, Cut, etc.) but never learns whether those decisions were correct. There's no mechanism to track whether a "Cut" decision was followed and what happened after. The AI can't improve its decision quality over time.</p>
+<p><strong>Impact:</strong> Low right now (decisions are reasonable), but limits long-term value. Andrew can't see the agent's hit rate.</p>
+<p><strong>Fix:</strong> Add a <code>decision_outcome</code> field to Optimization records (Correct / Overridden / Pending). When Andrew or the VA overrides a decision, log the override reason. Periodically include past decision outcomes in the Intelligence Agent's prompt so it calibrates to RequityAI's specific performance thresholds.</p>
+<p><strong>Effort:</strong> Low for the field; Medium for the feedback-in-prompt loop.</p>
+</div>
+
+<h3>WEAKNESS 8: No Backup or Disaster Recovery</h3>
+<div class="card">
+<p><strong>Problem:</strong> SmartSuite is the single source of truth with no backup. If data is accidentally deleted or corrupted, there's no recovery path. n8n workflows are cloud-hosted with no export backup. SOPs are in Google Docs (versioned, but only if someone remembers to check history).</p>
+<p><strong>Impact:</strong> Low probability, catastrophic impact. Losing the SmartSuite data means losing all client records, campaign history, and operational state.</p>
+<p><strong>Fix:</strong> Add a weekly n8n workflow that exports all SmartSuite records to JSON files in Google Drive. This gives a rolling 4-week backup with no manual effort. Also export n8n workflow definitions weekly via the API.</p>
+<p><strong>Effort:</strong> Low. One new workflow that iterates through 8 apps and saves JSON to Drive.</p>
+</div>
+
+<h3>Priority Ranking</h3>
+<table>
+<thead><tr><th>Priority</th><th>Weakness</th><th>Effort</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td><span class="tag tag-red">P1</span></td><td>No error recovery (#2)</td><td>Low</td><td>High — silent failures right now</td></tr>
+<tr><td><span class="tag tag-red">P1</span></td><td>12h polling latency (#1)</td><td>Medium</td><td>High — VA productivity bottleneck</td></tr>
+<tr><td><span class="tag tag-orange">P2</span></td><td>No onboarding SLA (#5)</td><td>Medium</td><td>High — churn risk</td></tr>
+<tr><td><span class="tag tag-orange">P2</span></td><td>Windsor name matching (#6)</td><td>Low</td><td>Medium — silent data loss</td></tr>
+<tr><td><span class="tag tag-orange">P2</span></td><td>Hardcoded API keys (#3)</td><td>Medium</td><td>Medium — operational risk</td></tr>
+<tr><td><span class="tag tag-blue">P3</span></td><td>Client matching fragility (#4)</td><td>Low</td><td>Medium — usability</td></tr>
+<tr><td><span class="tag tag-blue">P3</span></td><td>No AI feedback loop (#7)</td><td>Medium</td><td>Low now, high later</td></tr>
+<tr><td><span class="tag tag-blue">P3</span></td><td>No backup (#8)</td><td>Low</td><td>Low prob, catastrophic impact</td></tr>
+</tbody>
+</table>
+
+<div class="separator"></div>
+
+<p style="text-align: center; color: var(--text2); font-size: 13px; margin-top: 40px;">AgencyOS Architecture Document — RequityAI — Generated April 2026 by Signal</p>
+
+</div>
+
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'dark',
+  flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+  themeVariables: {
+    primaryColor: '#1e3a5f',
+    primaryTextColor: '#e2e4eb',
+    primaryBorderColor: '#60a5fa',
+    lineColor: '#4f8ff7',
+    secondaryColor: '#232733',
+    tertiaryColor: '#2d3244',
+    fontSize: '13px'
+  }
+});
+</script>
+</body>
+</html>
